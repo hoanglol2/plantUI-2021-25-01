@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import styles from './HomeScreen.style';
 // components.
 import HomeHeader from '../../components/HomeHeader';
@@ -8,7 +8,7 @@ import MoreTitleBox from '../../components/MoreTitleBox';
 import ListSmallProduct from '../../components/ListSmallProduct';
 import ListMediumProduct from '../../components/ListMediumProduct';
 // datas.
-import {product} from '../../mocks/product';
+import {product, featuredProduct} from '../../mocks/product';
 
 const HomeScreen = ({navigation}: any) => {
   return (
@@ -17,11 +17,14 @@ const HomeScreen = ({navigation}: any) => {
       <SearchBox />
       <MoreTitleBox title="Recommended" buttonText="More" />
       <ListSmallProduct
-        navigation={() => navigation.navigate('Detail')}
+        handleOnPress={(id: Number) => navigation.navigate('Detail', {id: id})}
         data={product}
       />
       <MoreTitleBox title="Featured Plants" buttonText="More" />
-      <ListMediumProduct />
+      <ListMediumProduct
+        handleOnPress={() => navigation.navigate('Detail')}
+        data={featuredProduct}
+      />
     </ScrollView>
   );
 };

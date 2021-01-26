@@ -3,15 +3,14 @@ import {View, Text, Image} from 'react-native';
 import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './ListSmallProduct.style';
-// images.
-import {Image4, Image5, Image6} from '../../assets/images';
+
 interface Props {
   data: Array<any>;
-  navigation: any;
+  handleOnPress: Function;
 }
 
 const ListSmallProduct = (props: Props) => {
-  const {data, navigation} = props;
+  const {data, handleOnPress} = props;
   return (
     <ScrollView
       horizontal
@@ -22,17 +21,17 @@ const ListSmallProduct = (props: Props) => {
         style={styles.productLinear}
       />
       {data
-        ? data.map((product, index) => (
+        ? data.map(({id, name, price, origin, image}, index) => (
             <TouchableOpacity
-              onPress={() => navigation()}
+              onPress={() => handleOnPress(id)}
               style={styles.wrapImage}
               key={index}>
-              <Image source={product.image} />
+              <Image source={image} />
               <View style={styles.wrapPrice}>
-                <Text style={styles.textNameproduct}>{product.name}</Text>
-                <Text style={styles.textPriceProduct}>${product.price}</Text>
+                <Text style={styles.textNameproduct}>{name}</Text>
+                <Text style={styles.textPriceProduct}>${price}</Text>
               </View>
-              <Text style={styles.textOriginProduct}>{product.origin}</Text>
+              <Text style={styles.textOriginProduct}>{origin}</Text>
             </TouchableOpacity>
           ))
         : null}

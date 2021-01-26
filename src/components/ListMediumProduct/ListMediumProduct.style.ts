@@ -1,11 +1,14 @@
 import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
     container: {
-      
+      paddingHorizontal: 20
     },
     imageProductMedium: {
         marginTop: 20,
         borderRadius: 10,
-        // marginLeft: 20
+        height: 170
+    },
+    fistImageProduct: {
+        marginRight: 20
     }
 });
